@@ -166,21 +166,21 @@ L7:
 	cmpl	248(%esp), %eax
 	jl	L9
 	movl	212(%esp), %eax
-	movl	72(%eax), %eax
+	movl	8(%eax), %eax
 	subl	244(%esp), %eax
 	movl	%eax, 208(%esp)
 	movl	212(%esp), %eax
-	addl	$20, %eax
+	addl	$32, %eax
 	movl	%eax, 4(%esp)
 	movl	$LC7, (%esp)
 	call	_printf
 	movl	212(%esp), %eax
-	flds	80(%eax)
+	flds	4(%eax)
 	fstpl	4(%esp)
 	movl	$LC8, (%esp)
 	call	_printf
 	movl	212(%esp), %eax
-	movl	72(%eax), %eax
+	movl	8(%eax), %eax
 	movl	208(%esp), %edx
 	movl	%edx, 12(%esp)
 	movl	244(%esp), %edx
@@ -325,7 +325,7 @@ L22:
 	movl	(%eax), %eax
 	movl	%eax, 200(%esp)
 	movl	200(%esp), %eax
-	flds	80(%eax)
+	flds	4(%eax)
 	movl	224(%esp), %eax
 	leal	0(,%eax,8), %edx
 	movl	252(%esp), %eax
@@ -340,7 +340,7 @@ L22:
 	fstps	228(%esp)
 	flds	196(%esp)
 	movl	200(%esp), %eax
-	flds	80(%eax)
+	flds	4(%eax)
 	fxch	%st(1)
 	movl	224(%esp), %eax
 	leal	0(,%eax,8), %edx
@@ -348,7 +348,7 @@ L22:
 	addl	%edx, %eax
 	movl	4(%eax), %eax
 	movl	200(%esp), %edx
-	addl	$20, %edx
+	addl	$32, %edx
 	fstpl	20(%esp)
 	fstpl	12(%esp)
 	movl	%eax, 8(%esp)
@@ -392,7 +392,7 @@ L26:
 	movl	252(%esp), %edx
 	addl	%ecx, %edx
 	movl	(%edx), %edx
-	movl	72(%edx), %ecx
+	movl	8(%edx), %ecx
 	movl	220(%esp), %edx
 	leal	0(,%edx,8), %ebx
 	movl	252(%esp), %edx
@@ -400,7 +400,7 @@ L26:
 	movl	4(%edx), %edx
 	subl	%edx, %ecx
 	movl	%ecx, %edx
-	movl	%edx, 72(%eax)
+	movl	%edx, 8(%eax)
 	addl	$1, 220(%esp)
 L25:
 	movl	220(%esp), %eax

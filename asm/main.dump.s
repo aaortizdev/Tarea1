@@ -143,25 +143,25 @@ int main() {
             // El disponible real es lo que hay en bodega MENOS lo que ya tiene el cliente en la mano
             int disponible_real = p->cantidad - cantidad_ya_en_carrito;
  181:	8b 84 24 d4 00 00 00 	mov    0xd4(%esp),%eax
- 188:	8b 40 48             	mov    0x48(%eax),%eax
+ 188:	8b 40 08             	mov    0x8(%eax),%eax
  18b:	2b 84 24 f4 00 00 00 	sub    0xf4(%esp),%eax
  192:	89 84 24 d0 00 00 00 	mov    %eax,0xd0(%esp)
 
             printf("Producto: %s\n", p->nombre);
  199:	8b 84 24 d4 00 00 00 	mov    0xd4(%esp),%eax
- 1a0:	83 c0 14             	add    $0x14,%eax
+ 1a0:	83 c0 20             	add    $0x20,%eax
  1a3:	89 44 24 04          	mov    %eax,0x4(%esp)
  1a7:	c7 04 24 88 00 00 00 	movl   $0x88,(%esp)
  1ae:	e8 00 00 00 00       	call   1b3 <_main+0x1b3>
             printf("Precio: %.2f\n", p->precio);
  1b3:	8b 84 24 d4 00 00 00 	mov    0xd4(%esp),%eax
- 1ba:	d9 40 50             	flds   0x50(%eax)
+ 1ba:	d9 40 04             	flds   0x4(%eax)
  1bd:	dd 5c 24 04          	fstpl  0x4(%esp)
  1c1:	c7 04 24 96 00 00 00 	movl   $0x96,(%esp)
  1c8:	e8 00 00 00 00       	call   1cd <_main+0x1cd>
             printf("Stock Bodega: %d | En su carrito: %d | -> DISPONIBLE: %d\n", 
  1cd:	8b 84 24 d4 00 00 00 	mov    0xd4(%esp),%eax
- 1d4:	8b 40 48             	mov    0x48(%eax),%eax
+ 1d4:	8b 40 08             	mov    0x8(%eax),%eax
  1d7:	8b 94 24 d0 00 00 00 	mov    0xd0(%esp),%edx
  1de:	89 54 24 0c          	mov    %edx,0xc(%esp)
  1e2:	8b 94 24 f4 00 00 00 	mov    0xf4(%esp),%edx
@@ -373,7 +373,7 @@ int main() {
  4a0:	89 84 24 c8 00 00 00 	mov    %eax,0xc8(%esp)
             float total_linea = p->precio * carrito[i].cantidadVenta;
  4a7:	8b 84 24 c8 00 00 00 	mov    0xc8(%esp),%eax
- 4ae:	d9 40 50             	flds   0x50(%eax)
+ 4ae:	d9 40 04             	flds   0x4(%eax)
  4b1:	8b 84 24 e0 00 00 00 	mov    0xe0(%esp),%eax
  4b8:	8d 14 c5 00 00 00 00 	lea    0x0(,%eax,8),%edx
  4bf:	8b 84 24 fc 00 00 00 	mov    0xfc(%esp),%eax
@@ -390,7 +390,7 @@ int main() {
             printf("%-20s %-10d %-10.2f %-10.2f\n", p->nombre, carrito[i].cantidadVenta, p->precio, total_linea);
  4f1:	d9 84 24 c4 00 00 00 	flds   0xc4(%esp)
  4f8:	8b 84 24 c8 00 00 00 	mov    0xc8(%esp),%eax
- 4ff:	d9 40 50             	flds   0x50(%eax)
+ 4ff:	d9 40 04             	flds   0x4(%eax)
  502:	d9 c9                	fxch   %st(1)
  504:	8b 84 24 e0 00 00 00 	mov    0xe0(%esp),%eax
  50b:	8d 14 c5 00 00 00 00 	lea    0x0(,%eax,8),%edx
@@ -398,7 +398,7 @@ int main() {
  519:	01 d0                	add    %edx,%eax
  51b:	8b 40 04             	mov    0x4(%eax),%eax
  51e:	8b 94 24 c8 00 00 00 	mov    0xc8(%esp),%edx
- 525:	83 c2 14             	add    $0x14,%edx
+ 525:	83 c2 20             	add    $0x20,%edx
  528:	dd 5c 24 14          	fstpl  0x14(%esp)
  52c:	dd 5c 24 0c          	fstpl  0xc(%esp)
  530:	89 44 24 08          	mov    %eax,0x8(%esp)
@@ -454,7 +454,7 @@ int main() {
  5ed:	8b 94 24 fc 00 00 00 	mov    0xfc(%esp),%edx
  5f4:	01 ca                	add    %ecx,%edx
  5f6:	8b 12                	mov    (%edx),%edx
- 5f8:	8b 4a 48             	mov    0x48(%edx),%ecx
+ 5f8:	8b 4a 08             	mov    0x8(%edx),%ecx
  5fb:	8b 94 24 dc 00 00 00 	mov    0xdc(%esp),%edx
  602:	8d 1c d5 00 00 00 00 	lea    0x0(,%edx,8),%ebx
  609:	8b 94 24 fc 00 00 00 	mov    0xfc(%esp),%edx
@@ -462,7 +462,7 @@ int main() {
  612:	8b 52 04             	mov    0x4(%edx),%edx
  615:	29 d1                	sub    %edx,%ecx
  617:	89 ca                	mov    %ecx,%edx
- 619:	89 50 48             	mov    %edx,0x48(%eax)
+ 619:	89 50 08             	mov    %edx,0x8(%eax)
             for(int i=0; i<items_carrito; i++) {
  61c:	83 84 24 dc 00 00 00 	addl   $0x1,0xdc(%esp)
  623:	01 

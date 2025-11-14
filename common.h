@@ -8,11 +8,11 @@ typedef struct {
 } Vendedor;
 
 typedef struct {
-    char codigo[20];
-    char nombre[50];
-    int cantidad;
     float costo;
     float precio;
+    int cantidad;
+    char codigo[20];
+    char nombre[50];
 } Producto;
 
 // Estructura para el "carrito" de compras temporal

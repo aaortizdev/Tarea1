@@ -53,7 +53,7 @@ L5:
 	imull	$84, %eax, %edx
 	movl	-12(%ebp), %eax
 	addl	%edx, %eax
-	movl	%eax, %edx
+	leal	12(%eax), %edx
 	movl	-24(%ebp), %eax
 	movl	%eax, 4(%esp)
 	movl	%edx, (%esp)
@@ -66,7 +66,7 @@ L5:
 	imull	$84, %eax, %edx
 	movl	-12(%ebp), %eax
 	addl	%edx, %eax
-	leal	20(%eax), %edx
+	leal	32(%eax), %edx
 	movl	-24(%ebp), %eax
 	movl	%eax, 4(%esp)
 	movl	%edx, (%esp)
@@ -82,7 +82,7 @@ L5:
 	movl	-24(%ebp), %eax
 	movl	%eax, (%esp)
 	call	_atoi
-	movl	%eax, 72(%ebx)
+	movl	%eax, 8(%ebx)
 	movl	$LC1, 4(%esp)
 	movl	$0, (%esp)
 	call	_strtok
@@ -96,7 +96,7 @@ L5:
 	call	_atof
 	fstps	-284(%ebp)
 	flds	-284(%ebp)
-	fstps	76(%ebx)
+	fstps	(%ebx)
 	movl	$LC2, 4(%esp)
 	movl	$0, (%esp)
 	call	_strtok
@@ -110,7 +110,7 @@ L5:
 	call	_atof
 	fstps	-284(%ebp)
 	flds	-284(%ebp)
-	fstps	80(%ebx)
+	fstps	4(%ebx)
 	addl	$1, -16(%ebp)
 L4:
 	movl	-20(%ebp), %eax
@@ -156,7 +156,7 @@ L11:
 	imull	$84, %eax, %edx
 	movl	8(%ebp), %eax
 	addl	%edx, %eax
-	movl	%eax, %edx
+	leal	12(%eax), %edx
 	movl	16(%ebp), %eax
 	movl	%eax, 4(%esp)
 	movl	%edx, (%esp)
@@ -278,32 +278,33 @@ L20:
 	imull	$84, %eax, %edx
 	movl	16(%ebp), %eax
 	addl	%edx, %eax
-	flds	80(%eax)
+	flds	4(%eax)
 	movl	-12(%ebp), %eax
 	imull	$84, %eax, %edx
 	movl	16(%ebp), %eax
 	addl	%edx, %eax
-	flds	76(%eax)
+	flds	(%eax)
 	fxch	%st(1)
 	movl	-12(%ebp), %eax
 	imull	$84, %eax, %edx
 	movl	16(%ebp), %eax
 	addl	%edx, %eax
-	movl	72(%eax), %eax
+	movl	8(%eax), %eax
 	movl	-12(%ebp), %edx
 	imull	$84, %edx, %ecx
 	movl	16(%ebp), %edx
 	addl	%ecx, %edx
-	addl	$20, %edx
-	movl	-12(%ebp), %ecx
-	imull	$84, %ecx, %ebx
-	movl	16(%ebp), %ecx
-	addl	%ebx, %ecx
+	leal	32(%edx), %ecx
+	movl	-12(%ebp), %edx
+	imull	$84, %edx, %ebx
+	movl	16(%ebp), %edx
+	addl	%ebx, %edx
+	addl	$12, %edx
 	fstpl	28(%esp)
 	fstpl	20(%esp)
 	movl	%eax, 16(%esp)
-	movl	%edx, 12(%esp)
-	movl	%ecx, 8(%esp)
+	movl	%ecx, 12(%esp)
+	movl	%edx, 8(%esp)
 	movl	$LC5, 4(%esp)
 	movl	-20(%ebp), %eax
 	movl	%eax, (%esp)
@@ -371,25 +372,26 @@ L22:
 	movl	(%eax), %eax
 	movl	%eax, -32(%ebp)
 	movl	-32(%ebp), %eax
-	flds	80(%eax)
+	flds	4(%eax)
 	movl	-32(%ebp), %eax
-	flds	76(%eax)
+	flds	(%eax)
 	fxch	%st(1)
 	movl	-16(%ebp), %eax
 	leal	0(,%eax,8), %edx
 	movl	24(%ebp), %eax
 	addl	%edx, %eax
-	movl	4(%eax), %edx
-	movl	-32(%ebp), %eax
-	leal	20(%eax), %ebx
-	movl	-32(%ebp), %eax
-	leal	-92(%ebp), %ecx
-	movl	%ecx, 40(%esp)
+	movl	4(%eax), %eax
+	movl	-32(%ebp), %edx
+	leal	32(%edx), %ebx
+	movl	-32(%ebp), %edx
+	leal	12(%edx), %ecx
+	leal	-92(%ebp), %edx
+	movl	%edx, 40(%esp)
 	fstpl	32(%esp)
 	fstpl	24(%esp)
-	movl	%edx, 20(%esp)
+	movl	%eax, 20(%esp)
 	movl	%ebx, 16(%esp)
-	movl	%eax, 12(%esp)
+	movl	%ecx, 12(%esp)
 	movl	-24(%ebp), %eax
 	movl	%eax, 8(%esp)
 	movl	$LC8, 4(%esp)
